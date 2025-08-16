@@ -5,14 +5,18 @@
 const averageCount = document.querySelectorAll('.population');
 
 let total = 0;
+let validCount = 0;
 
 averageCount.forEach((span) => {
   const number = Number(span.textContent.replaceAll(',', ''));
 
-  total += number;
+  if (Number.isFinite(number)) {
+    total += number;
+    validCount += 1;
+  }
 });
 
-const totalCount = total / averageCount.length;
+const totalCount = total / validCount;
 
 document.querySelector('.total-population').textContent =
   total.toLocaleString();
